@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'domain/bindingins/andress_binding.dart';
 import 'ui/pages/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: [
-        GetPage(name: '/', page: () => const HomePage(), children: const []),
+        GetPage(
+          name: '/',
+          binding: AndressBinding(),
+          page: () => const HomePage(),
+        ),
 /*         GetPage(
           name: '/getx-controller',
           binding: BindingsBuilder.put(() => Controller()),
