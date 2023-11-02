@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'controller/address_controller.dart';
-import 'widgets/cep_widget.dart';
+import 'widgets/address_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,15 +27,14 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                initialValue: '59132020',
                 // obscureText: true,
                 onChanged: (value) {
                   controller.cepSearch = value;
                 },
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
-                    onPressed: () {
-                    
-                    },
+                    onPressed: () {},
                     icon: const Icon(
                       Icons.search,
                     ),
@@ -47,11 +46,22 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                   
+                  controller.findAddress();
                 },
                 child: const Text('Pesquisar Endereço')),
             const SizedBox(height: 20),
-            const CepWidget(),
+            Center(
+              child: Obx(() {
+                if (controller.isLoading) {
+                  return const CircularProgressIndicator();
+                } else if (controller.isError) {
+                  return const Text('Erro ao buscar endereço');
+                } else {                
+                  return AddressWidget(adrress: controller.address);
+                }
+              }),
+            ),
+            // Obx(() => AddressWidget(adrress: controller.address)),
           ],
         ),
       ),
