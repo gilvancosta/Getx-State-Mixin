@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'controller/address_controller_mixin.dart';
+
+import 'controller/address_super_controller.dart';
 import 'widgets/address_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +14,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // final controller = Get.find<AndressController>();
-  final controller = Get.find<AddressControllerMixin>();
+  //final controller = Get.find<AddressControllerMixin>();
+  final controller = Get.find<AddressSuperController>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +54,14 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: const Text('Pesquisar Endereço')),
             const SizedBox(height: 20),
+
+            ElevatedButton(
+                onPressed: () {
+                  controller.findAddressV2();
+                },
+                child: const Text('Busca 2')),
+            const SizedBox(height: 20),
+
             Center(
               child: controller.obx(
                 (state) => AddressWidget(adrress: state),
@@ -70,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                 }
               }), */
             ),
+
             // Obx(() => AddressWidget(adrress: controller.address)),
           ],
         ),

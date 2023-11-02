@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../../ui/pages/home/controller/address_controller_mixin.dart';
 import '../../ui/pages/home/controller/address_controller.dart';
+import '../../ui/pages/home/controller/address_super_controller.dart';
 import '../repositories/andress/address_repository.dart';
 
 class AddressBinding extends Bindings {
@@ -10,6 +11,9 @@ class AddressBinding extends Bindings {
     Get.lazyPut(() => AddressRepository());
     Get.put(AndressController(repository: Get.find()));
     Get.put(AddressControllerMixin(repository: Get.find()));
+    Get.put(AddressSuperController(repository: Get.find()));
+
+
 
 
  

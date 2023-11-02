@@ -1,17 +1,41 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
-
 import 'package:get/get.dart';
 
 import '../../../../domain/Entities/cep/address_entity.dart';
 import '../../../../domain/repositories/andress/address_repository.dart';
 
-class AddressControllerMixin extends GetxController with StateMixin<AddressEntity> {
+class AddressSuperController extends SuperController<AddressEntity> {
   final AddressRepository repository;
   final _cepSearch = ''.obs;
 
-  AddressControllerMixin({
+  AddressSuperController({
     required this.repository,
   });
+
+  @override
+  void onDetached() {
+    print(' ############ ondetached #############');
+  }
+
+  @override
+  void onInactive() {
+    print(' ############ onInactive #############');
+  }
+
+  @override
+  void onPaused() {
+    print(' ############ onPaused #############');
+  }
+
+  @override
+  void onHidden() {
+    print(' ############ onHidden #############');
+  }
+
+  @override
+  void onResumed() {
+    print(' ############ onResumed #############');
+  }
 
   // Setter for _cepSearch
   set cepSearch(String value) => _cepSearch.value = value;
@@ -51,4 +75,7 @@ class AddressControllerMixin extends GetxController with StateMixin<AddressEntit
   }
 
   Future<AddressEntity> _findAddressRepository() async => await repository.getAndress(_cepSearch.value);
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
