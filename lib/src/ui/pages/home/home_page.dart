@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'controller/address_controller.dart';
+import 'controller/address_controller_mixin.dart';
 import 'widgets/address_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,8 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final controller = Get.find<AndressController>();
-
+  // final controller = Get.find<AndressController>();
+  final controller = Get.find<AddressControllerMixin>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +51,16 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Pesquisar Endereço')),
             const SizedBox(height: 20),
             Center(
-              child: Obx(() {
+              child: controller.obx(
+                (state) => AddressWidget(adrress: state),
+                onError: (error) {
+                  return const Text('Erro ao buscar endereço');
+                },
+                onLoading: const CircularProgressIndicator(),
+                onEmpty: const Text('Nenhum endereço encontrado'),
+              ),
+
+              /*             child: Obx(() {
                 if (controller.isLoading) {
                   return const CircularProgressIndicator();
                 } else if (controller.isError) {
@@ -59,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 } else {                
                   return AddressWidget(adrress: controller.address);
                 }
-              }),
+              }), */
             ),
             // Obx(() => AddressWidget(adrress: controller.address)),
           ],
