@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+import 'controller/address_controller.dart';
+import 'widgets/cep_widget.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final controller = Get.find<AndressController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +28,13 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 // obscureText: true,
+                onChanged: (value) {
+                  controller.cepSearch = value;
+                },
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () {
-                      // obscureData.toggle();
+                    
                     },
                     icon: const Icon(
                       Icons.search,
@@ -34,10 +47,11 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Get.toNamed('/getx-controller');
+                   
                 },
                 child: const Text('Pesquisar Endereço')),
             const SizedBox(height: 20),
+            const CepWidget(),
           ],
         ),
       ),

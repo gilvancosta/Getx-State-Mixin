@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 
-class AndressEntity {
+class AddressEntity {
   String cep;
   String logradouro;
   String complemento;
   String bairro;
   String localidade;
   String uf;
-  AndressEntity({
+  AddressEntity({
     required this.cep,
     required this.logradouro,
     required this.complemento,
@@ -28,8 +28,8 @@ class AndressEntity {
     };
   }
 
-  factory AndressEntity.fromMap(Map<String, dynamic> map) {
-    return AndressEntity(
+  factory AddressEntity.fromMap(Map<String, dynamic> map) {
+    return AddressEntity(
       cep: map['cep'] as String,
       logradouro: map['logradouro'] as String,
       complemento: map['complemento'] as String,
@@ -41,5 +41,5 @@ class AndressEntity {
 
   String toJson() => json.encode(toMap());
 
-  factory AndressEntity.fromJson(String source) => AndressEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AddressEntity.fromJson(String source) => AddressEntity.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'domain/bindingins/andress_binding.dart';
+import 'domain/bindings/address_binding.dart';
 import 'ui/pages/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      getPages: [
+      getPages: [  
         GetPage(
           name: '/',
-          binding: AndressBinding(),
+          binding: AddressBinding(),
           page: () => const HomePage(),
         ),
 /*         GetPage(
